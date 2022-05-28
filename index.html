@@ -1,13 +1,65 @@
 <!--
-https://thisdavej.com/build-an-amazing-html-editor-using-visual-studio-code/
 index1
+Collapsable element for the setting (pannel) to be within.
 -->
 <html>
 <head>
     <title>My page title</title>
+	<style>
+	/*
+	https://www.w3schools.com/howto/howto_js_collapsible.asp
+	https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible_animate
+	*/
+	.collapsible {
+	  background-color: #777;
+	  color: white;
+	  cursor: pointer;
+	  padding: 18px;
+	  width: 100%;
+	  border: none;
+	  text-align: left;
+	  outline: none;
+	  font-size: 15px;
+	}
+
+	.active, .collapsible:hover {
+	  background-color: #555;
+	}
+
+	.content {
+	  padding: 0 18px;
+	  max-height: 0;
+	  overflow: hidden;
+	  transition: max-height 0.2s ease-out;
+	  background-color: #f1f1f1;
+	}
+	</style>
 </head>
 <body>
-    <p>Hello</p>
-    <p>world!</p>
+
+	<button class="collapsible">Open Collapsible</button>
+	<div class="content">
+	  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+	</div>
+	<script>
+	//Might be a little script kiddie of me but oh well. 12:29noon 28/5/22 i1. This isn't meant to be the best project in the world.
+	//https://www.w3schools.com/howto/howto_js_collapsible.asp
+	//https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible_animate
+	
+	var coll = document.getElementsByClassName("collapsible");
+	var i;
+
+	for (i = 0; i < coll.length; i++) {
+	  coll[i].addEventListener("click", function() {
+		this.classList.toggle("active");
+		var content = this.nextElementSibling;
+		if (content.style.maxHeight){
+		  content.style.maxHeight = null;
+		} else {
+		  content.style.maxHeight = content.scrollHeight + "px";
+		} 
+	  });
+	}
+	</script>
 </body>
 </html>
