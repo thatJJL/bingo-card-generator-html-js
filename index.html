@@ -1,5 +1,5 @@
 <!--
-index2
+index3
 Generated table
 -->
 <html>
@@ -68,6 +68,10 @@ Generated table
 	<script>
 	//https://stackoverflow.com/questions/14643617/create-table-using-javascript
 	function addTable() {
+		var height = 5;
+		var width = 2;
+		
+		
 		var myTableDiv = document.getElementById("myDynamicTable");
 
 		var table = document.createElement('TABLE');
@@ -76,11 +80,11 @@ Generated table
 		var tableBody = document.createElement('TBODY');
 		table.appendChild(tableBody);
 
-		for (var i = 0; i < 3; i++) {
+		for (var i = 0; i < height; i++) {
 			var tr = document.createElement('TR');
 			tableBody.appendChild(tr);
 
-			for (var j = 0; j < 4; j++) {
+			for (var j = 0; j < width; j++) {
 				var td = document.createElement('TD');
 				td.width = '75';
 			td.appendChild(document.createTextNode("Cell " + i + "," + j));
