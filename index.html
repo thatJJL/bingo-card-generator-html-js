@@ -1,10 +1,10 @@
 <!--
-index1
-Collapsable element for the setting (pannel) to be within.
+index2
+Generated table
 -->
 <html>
 <head>
-    <title>My page title</title>
+    <title>Bingo card</title>
 	<style>
 	/*
 	https://www.w3schools.com/howto/howto_js_collapsible.asp
@@ -41,6 +41,10 @@ Collapsable element for the setting (pannel) to be within.
 	<div class="content">
 	  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 	</div>
+	
+	
+	<div id="myDynamicTable"></div>
+	
 	<script>
 	//Might be a little script kiddie of me but oh well. 12:29noon 28/5/22 i1. This isn't meant to be the best project in the world.
 	//https://www.w3schools.com/howto/howto_js_collapsible.asp
@@ -61,5 +65,32 @@ Collapsable element for the setting (pannel) to be within.
 	  });
 	}
 	</script>
+	<script>
+	//https://stackoverflow.com/questions/14643617/create-table-using-javascript
+	function addTable() {
+		var myTableDiv = document.getElementById("myDynamicTable");
+
+		var table = document.createElement('TABLE');
+		table.border = '1';
+
+		var tableBody = document.createElement('TBODY');
+		table.appendChild(tableBody);
+
+		for (var i = 0; i < 3; i++) {
+			var tr = document.createElement('TR');
+			tableBody.appendChild(tr);
+
+			for (var j = 0; j < 4; j++) {
+				var td = document.createElement('TD');
+				td.width = '75';
+			td.appendChild(document.createTextNode("Cell " + i + "," + j));
+			tr.appendChild(td);
+			}
+		}
+		myTableDiv.appendChild(table);
+	}
+	addTable();
+	</script>
+	
 </body>
 </html>
