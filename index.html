@@ -1,6 +1,6 @@
 <!--
-index5.1
-Replaces table.
+index6
+Centering text and forming squares
 -->
 <html>
 <head>
@@ -33,8 +33,13 @@ Replaces table.
 	  transition: max-height 0.2s ease-out;
 	  background-color: #f1f1f1;
 	}
+	
+	
+	td
 	</style>
 </head>
+
+
 <body>
 
 	<button class="collapsible">Settings</button>
@@ -125,9 +130,26 @@ Replaces table.
 
 			for (var j = 0; j < width; j++) {
 				var td = document.createElement('TD');
-				td.width = '75';
-			td.appendChild(document.createTextNode("Cell " + i + "," + j));
-			tr.appendChild(td);
+				//td.width = '75';
+				td.width = "50em";
+				td.height = td.width; //Crude. Not as dynamic as I'd like. 12:32noon i6 1/June/22.
+			
+			
+				//<div style="display:flex;justify-content:center;align-items:center;">Text Content</div>
+				//Generated from http://howtocenterincss.com/#contentType=text&horizontal=center&vertical=middle
+				//Useful tool.
+				
+				//const newCenterDiv = '<div style="display:flex;justify-content:center;align-items:center;">' //https://iqcode.com/code/javascript/js-create-div //Haven't tried; wouldn't work. Seems like it wouldn't anyway. i6. 12:13noon 1/June/22.
+				//td.style = ""
+				//td.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;">';
+				
+				
+				//td.appendChild(document.createTextNode("Cell " + i + "," + j));
+				//tr.appendChild(td);
+				
+				//td.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;'>Text Content</div>";
+				td.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;'>Cell " + i + "," + j + "</div>";
+				tr.appendChild(td);
 			}
 		}
 		tableDiv.appendChild(table);
