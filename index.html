@@ -1,5 +1,5 @@
 <!--
-index4
+index5
 
 -->
 <html>
@@ -40,13 +40,19 @@ index4
 	<button class="collapsible">Open Collapsible</button>
 	<div class="content">
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		<form action="">
+		<!-- <form action="addTable()">
 			<label for="quantity">Quantity (Odd numbers):</label>
-			<!--<input type="number" id="quantity" name="quantity" min="1" max="5">-->
+			<!--<input type="number" id="quantity" name="quantity" min="1" max="5"> -- >
 			<input type="number" id="quantity" name="quantity" min="3" max="11" step="2">
-			<input type="submit">
-			<!-- TODO 13:38pm i4 28/May/22 Figure out if it can work outside the form and attach a listener to the increase or decrease number (the change). Also have the randomness seeded so if you accidently change the size you can still get the exact generation back, when randomness is introduced..
-		</form>
+			<input type="submit" placeholder="Size">
+			<!-- TODO 13:38pm i4 28/May/22 Figure out if it can work outside the form and attach a listener to the increase or decrease number (the change). Also have the randomness seeded so if you accidently change the size you can still get the exact generation back, when randomness is introduced. -- >
+		<! -- </form> -->
+		
+		<label for="quantity">Size (Odd numbers):</label>
+		<input type="number" id="quantity" name="quantity" min="3" max="11" step="2" placeholder="Size">
+		<!--<button type="submit" action="">Generate</button>-->
+		<button type="submit" onclick="genTable()">Generate</button>
+		<p></p>
 		
 	</div>
 	
@@ -75,9 +81,30 @@ index4
 	</script>
 	<script>
 	//https://stackoverflow.com/questions/14643617/create-table-using-javascript
-	function addTable() {
-		var height = 5;
-		var width = 5;
+	//function addTable() {
+	function genTable() {
+	
+		//var height = 5;
+		//var width = 5;
+		
+		//let inputVal = document.getElementById("inputId").value; //https://www.w3docs.com/snippets/javascript/how-to-get-the-value-of-text-input-field-using-javascript.html
+		//https://www.tutorialspoint.com/difference-between-var-and-let-in-javascript
+		//let globally scopes - note to self 11:33am 1/June/22. i5.
+		//let squareSize = document.getElementById("inputId").value;
+		let size = document.getElementById("quantity").value;
+		console.log("size:"); //developing
+		console.log(size); //developing
+		
+		
+		//if (typeof size === 'undefined') { //https://stackoverflow.com/questions/711536/javascript-define-a-variable-if-it-doesnt-exist
+		if ( (typeof size === 'undefined') || (size = " ") ) { //If the size box/input is empty, it is " " (apparently)
+			size = 5;
+			console.log("size defaulted"); //developing
+		}
+		
+		var height = size;
+		var width = size;
+		
 		
 		
 		var myTableDiv = document.getElementById("myDynamicTable");
@@ -101,7 +128,8 @@ index4
 		}
 		myTableDiv.appendChild(table);
 	}
-	addTable();
+	//addTable();
+	genTable();
 	</script>
 	
 </body>
