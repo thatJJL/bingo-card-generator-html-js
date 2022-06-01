@@ -1,6 +1,6 @@
 <!--
-index9
-
+index9.1
+Seeded shuffling of array
 -->
 <html>
 <head>
@@ -229,6 +229,71 @@ index9
 	}
 	console.log("randomOrderCatalogue:"); //developing
 	console.log(randomOrderCatalogue); //developing
+	
+	
+	
+	/*
+	//var orderedOrderCatalogue = randomOrderCatalogue.sort();
+	var orderedOrderCatalogue = randomOrderCatalogue;
+	console.log("orderedOrderCatalogue pre sort:"); //developing
+	console.log(orderedOrderCatalogue); //developing
+	
+	//orderedOrderCatalogue.sort();
+	//.sort(function(a, b){return a - b}); //To work with numbers instead of them as strings
+	orderedOrderCatalogue.sort(function(a, b){return a - b}); //To work with numbers instead of them as strings
+	console.log("orderedOrderCatalogue post sort:"); //developing
+	console.log(orderedOrderCatalogue); //developing
+	//console.log(randomOrderCatalogue); //developing //sorting it also sorts the original. 
+	
+	
+	console.log("randomOrderCatalogue post the ordered one being sorted:"); //developing
+	console.log(randomOrderCatalogue); //developing
+	*/
+	
+	
+	//https://javascript.info/task/copy-sort-array
+	/*
+	function copySorted(arr) {
+	  return arr.slice().sort();
+	}
+
+	let arr = ["HTML", "JavaScript", "CSS"];
+	let sorted = copySorted(arr);
+	alert( sorted );
+	alert( arr );
+	*/
+	function copySorted(arr) {
+	  return arr.slice().sort();
+	}
+	var orderedOrderCatalogue = copySorted(randomOrderCatalogue);
+	
+	console.log("orderedOrderCatalogue post sort:"); //developing
+	console.log(orderedOrderCatalogue); //developing
+	
+	console.log("randomOrderCatalogue post the ordered one being sorted:"); //developing
+	console.log(randomOrderCatalogue); //developing
+	
+	
+	
+	
+	for (var p = 0; p < listLength; p++) { //p is the intial random index; we/it is finding the new index it got moved/sorted to
+		/*
+		console.log("Looking for: " + randomOrderCatalogue[p])
+		orderedOrderCatalogue.findIndex(randomOrderCatalogue[p])
+		*/
+		var currentItem = randomOrderCatalogue[p];
+		console.log("Looking for: " + currentItem); //Developing
+		//newIdex = orderedOrderCatalogue.findIndex(currentItem);
+		var newIndex = orderedOrderCatalogue.indexOf(currentItem);
+		console.log(currentItem + " was index " + p + ", now index " + newIndex ); //Developing
+		
+		/*
+		console.log(randomOrderCatalogue[p] ); //Developing
+		console.log(orderedOrderCatalogue[p] ); //Developing
+		*/		
+		
+	}
+	
 	</script>
 	
 </body>
