@@ -1,6 +1,6 @@
 <!--
-index6
-Centering text and forming squares
+index7
+Small clean up & free, centre space calculation
 -->
 <html>
 <head>
@@ -106,6 +106,10 @@ Centering text and forming squares
 		var height = size;
 		var width = size;
 		
+		var centreOfSize = (size-1) / 2;
+		console.log("centreOfSize:"); //developing
+		console.log(centreOfSize); //developing
+		
 		
 		
 		var tableDiv = document.getElementById("dynamicTable");
@@ -131,7 +135,7 @@ Centering text and forming squares
 			for (var j = 0; j < width; j++) {
 				var td = document.createElement('TD');
 				//td.width = '75';
-				td.width = "50em";
+				td.width = "150em";
 				td.height = td.width; //Crude. Not as dynamic as I'd like. 12:32noon i6 1/June/22.
 			
 			
@@ -140,15 +144,20 @@ Centering text and forming squares
 				//Useful tool.
 				
 				//const newCenterDiv = '<div style="display:flex;justify-content:center;align-items:center;">' //https://iqcode.com/code/javascript/js-create-div //Haven't tried; wouldn't work. Seems like it wouldn't anyway. i6. 12:13noon 1/June/22.
-				//td.style = ""
-				//td.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;">';
 				
 				
 				//td.appendChild(document.createTextNode("Cell " + i + "," + j));
 				//tr.appendChild(td);
 				
-				//td.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;'>Text Content</div>";
-				td.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;'>Cell " + i + "," + j + "</div>";
+				//const newCenterDivStart = 
+				const newCenterDivOpenning = "<div style='display:flex;justify-content:center;align-items:center;'>";
+				
+				//td.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;'>Cell " + i + "," + j + "</div>";
+				//if ( (j == centreOfSize) && (j == centreOfSize) ) {
+				if ( (j == centreOfSize) && (i == centreOfSize) ) {
+					td.innerHTML = newCenterDivOpenning + "FREE (SPACE)" + "</div>";
+				}
+				else {   td.innerHTML = newCenterDivOpenning + "Cell " + i + "," + j + "</div>";   }
 				tr.appendChild(td);
 			}
 		}
