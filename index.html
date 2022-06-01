@@ -1,6 +1,6 @@
 <!--
-index5
-
+index5.1
+Replaces table.
 -->
 <html>
 <head>
@@ -37,9 +37,9 @@ index5
 </head>
 <body>
 
-	<button class="collapsible">Open Collapsible</button>
+	<button class="collapsible">Settings</button>
 	<div class="content">
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		<p>Settings & details.</p>
 		<!-- <form action="addTable()">
 			<label for="quantity">Quantity (Odd numbers):</label>
 			<!--<input type="number" id="quantity" name="quantity" min="1" max="5"> -- >
@@ -50,14 +50,13 @@ index5
 		
 		<label for="quantity">Size (Odd numbers):</label>
 		<input type="number" id="quantity" name="quantity" min="3" max="11" step="2" placeholder="Size">
-		<!--<button type="submit" action="">Generate</button>-->
 		<button type="submit" onclick="genTable()">Generate</button>
 		<p></p>
 		
 	</div>
 	
 	
-	<div id="myDynamicTable"></div>
+	<div id="dynamicTable"></div>
 	
 	<script>
 	//Might be a little script kiddie of me but oh well. 12:29noon 28/5/22 i1. This isn't meant to be the best project in the world.
@@ -83,12 +82,8 @@ index5
 	//https://stackoverflow.com/questions/14643617/create-table-using-javascript
 	//function addTable() {
 	function genTable() {
-	
-		//var height = 5;
-		//var width = 5;
 		
-		//let inputVal = document.getElementById("inputId").value; //https://www.w3docs.com/snippets/javascript/how-to-get-the-value-of-text-input-field-using-javascript.html
-		//https://www.tutorialspoint.com/difference-between-var-and-let-in-javascript
+		//let inputVal = document.getElementById("inputId").value;
 		//let globally scopes - note to self 11:33am 1/June/22. i5.
 		//let squareSize = document.getElementById("inputId").value;
 		let size = document.getElementById("quantity").value;
@@ -97,17 +92,26 @@ index5
 		
 		
 		//if (typeof size === 'undefined') { //https://stackoverflow.com/questions/711536/javascript-define-a-variable-if-it-doesnt-exist
-		if ( (typeof size === 'undefined') || (size = " ") ) { //If the size box/input is empty, it is " " (apparently)
+		if ( (typeof size === 'undefined') || (size == "") ) {
 			size = 5;
 			console.log("size defaulted"); //developing
 		}
+		
 		
 		var height = size;
 		var width = size;
 		
 		
 		
-		var myTableDiv = document.getElementById("myDynamicTable");
+		var tableDiv = document.getElementById("dynamicTable");
+		//tableDiv = "";
+		//const list = document.getElementById("myList"); //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
+		//https://www.w3schools.com/jsref/met_node_removechild.asp
+		while (tableDiv.hasChildNodes()) {
+			tableDiv.removeChild(tableDiv.firstChild);
+		}
+		
+		
 
 		var table = document.createElement('TABLE');
 		table.border = '1';
@@ -126,9 +130,8 @@ index5
 			tr.appendChild(td);
 			}
 		}
-		myTableDiv.appendChild(table);
+		tableDiv.appendChild(table);
 	}
-	//addTable();
 	genTable();
 	</script>
 	
