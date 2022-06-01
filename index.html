@@ -1,5 +1,5 @@
 <!--
-index8
+index9
 
 -->
 <html>
@@ -55,7 +55,7 @@ index8
 		
 		<label for="quantity">Size (Odd numbers):</label>
 		<!-- <input type="number" id="quantity" name="quantity" min="3" max="11" step="2" placeholder="Size"> -->
-		<input type="number" id="quantity" name="quantity" min="3" max="11" step="2" placeholder="Size" onchange="genTable()">
+		<input type="number" id="quantity" name="quantity" min="3" max="11" step="2" placeholder="Size" onchange="genTable()" value="5"> <!-- Value already there so if a user changes it, they know where it is changing from instead of it being a default generation then jumping to the minium value. From 5 to 3 for example without ever knowing the default generated was 5, which they just changed it from as the box was blank. -->
 		<button type="submit" onclick="genTable()">Generate</button> <!-- May become laggy or problematic with bigger sizes if it generates each time, though the user could just type the number in too. 12:47noon 1/June/22 i8. May want a cut off for when it generates on change. (When it gets "too" big).-->
 		<p></p>
 		
@@ -164,6 +164,71 @@ index8
 		tableDiv.appendChild(table);
 	}
 	genTable(); //Generates a table when the page is first loaded.
+	</script>
+	
+	
+	<script>
+	//https://www.delftstack.com/howto/javascript/javascript-random-seed-to-generate-random/
+	//Not writing my own seeded random number generation but may be writing my own seeded random list shuffling code.
+	//12:57noon 1/June/22 i8
+	//(I did look over all the random number generation code segments. I'm not just using the first one because it is first).
+	
+	// Define the Murmur3Hash function
+	function MurmurHash3(string) {
+		let i = 0;
+		for (i, hash = 1779033703 ^ string.length; i < string.length; i++) {
+			let bitwise_xor_from_character = hash ^ string.charCodeAt(i);
+			hash = Math.imul(bitwise_xor_from_character, 3432918353);
+			hash = hash << 13 | hash >>> 19;
+		} return () => {
+		   // Return the hash that you can use as a seed
+			hash = Math.imul(hash ^ (hash >>> 16), 2246822507);
+			hash = Math.imul(hash ^ (hash >>> 13), 3266489909);
+			return (hash ^= hash >>> 16) >>> 0;
+		}
+	}
+
+	function SimpleFastCounter32(seed_1, seed_2, seed_3, seed_4) {
+		return () => {
+		  seed_1 >>>= 0; seed_2 >>>= 0; seed_3 >>>= 0; seed_4 >>>= 0;
+		  let cast32 = (seed_1 + seed_2) | 0;
+		  seed_1 = seed_2 ^ seed_2 >>> 9;
+		  seed_2 = seed_3 + (seed_3 << 3) | 0;
+		  seed_3 = (seed_3 << 21 | seed_3 >>> 11);
+		  seed_4 = seed_4 + 1 | 0;
+		  cast32 = cast32 + seed_4 | 0;
+		  seed_3 = seed_3 + cast32 | 0;
+		  return (cast32 >>> 0) / 4294967296;
+		}
+	}
+
+	//let generate_seed = MurmurHash3("String for the Seed Key");
+	let generate_seed = MurmurHash3("Seed");
+	let random_number = SimpleFastCounter32(generate_seed(), generate_seed());
+	console.log(random_number());
+	console.log(random_number());
+	
+	</script>
+	
+	
+	<script>
+	//Seeded shuffling code
+	
+	var listLength = 10;
+	//randomOrder = []
+	var randomOrderCatalogue = [];
+	for (var rnum = 0; rnum < listLength; rnum++) {
+		currentRandomNumber = random_number();
+		
+		while (randomOrderCatalogue.indexOf(currentRandomNumber) != -1) { //https://stackoverflow.com/questions/5864408/javascript-is-in-array
+			//While currentRandomNumber found in list, reassign currentRandomNumber
+			currentRandomNumber = random_number();
+		}
+		
+		randomOrderCatalogue.push(currentRandomNumber); //Append random numbers to the list so long as they don't already exist. This would cause problems with mapping the difference in order later.
+	}
+	console.log("randomOrderCatalogue:"); //developing
+	console.log(randomOrderCatalogue); //developing
 	</script>
 	
 </body>
