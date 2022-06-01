@@ -1,10 +1,10 @@
 <!--
-index7
-Small clean up & free, centre space calculation
+index8
+
 -->
 <html>
 <head>
-    <title>Bingo card</title>
+    <title>Bingo Card Generator</title>
 	<style>
 	/*
 	https://www.w3schools.com/howto/howto_js_collapsible.asp
@@ -42,7 +42,7 @@ Small clean up & free, centre space calculation
 
 <body>
 
-	<button class="collapsible">Settings</button>
+	<button class="collapsible">Bingo Settings</button>
 	<div class="content">
 		<p>Settings & details.</p>
 		<!-- <form action="addTable()">
@@ -54,8 +54,9 @@ Small clean up & free, centre space calculation
 		<! -- </form> -->
 		
 		<label for="quantity">Size (Odd numbers):</label>
-		<input type="number" id="quantity" name="quantity" min="3" max="11" step="2" placeholder="Size">
-		<button type="submit" onclick="genTable()">Generate</button>
+		<!-- <input type="number" id="quantity" name="quantity" min="3" max="11" step="2" placeholder="Size"> -->
+		<input type="number" id="quantity" name="quantity" min="3" max="11" step="2" placeholder="Size" onchange="genTable()">
+		<button type="submit" onclick="genTable()">Generate</button> <!-- May become laggy or problematic with bigger sizes if it generates each time, though the user could just type the number in too. 12:47noon 1/June/22 i8. May want a cut off for when it generates on change. (When it gets "too" big).-->
 		<p></p>
 		
 	</div>
@@ -153,7 +154,6 @@ Small clean up & free, centre space calculation
 				const newCenterDivOpenning = "<div style='display:flex;justify-content:center;align-items:center;'>";
 				
 				//td.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;'>Cell " + i + "," + j + "</div>";
-				//if ( (j == centreOfSize) && (j == centreOfSize) ) {
 				if ( (j == centreOfSize) && (i == centreOfSize) ) {
 					td.innerHTML = newCenterDivOpenning + "FREE (SPACE)" + "</div>";
 				}
@@ -163,7 +163,7 @@ Small clean up & free, centre space calculation
 		}
 		tableDiv.appendChild(table);
 	}
-	genTable();
+	genTable(); //Generates a table when the page is first loaded.
 	</script>
 	
 </body>
